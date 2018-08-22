@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
 using Game_Test.Components;
 using Game_Test.Entities;
 using Game_Test.Scenes;
+using Game_Test.Visuals;
 
 namespace Game_Test.ComponentSystems
 {
@@ -36,7 +36,7 @@ namespace Game_Test.ComponentSystems
             
             foreach (Entity entity in Owner.Entities)
             {
-                foreach(IComponent component in entity.Components)
+                foreach(Component component in entity.Components)
                 {
                     if(system.Watching.Contains(component.ComponentName))
                     {
@@ -51,7 +51,7 @@ namespace Game_Test.ComponentSystems
         public bool Remove(string name) => _dict.Remove(name);
 
         internal void InvokeTick() => _tickSystems.ForEach((s) => s.Tick());
-        internal void InvokeRender(Graphics g) => _renderSystems.ForEach((s) => s.Render(g));
+        internal void InvokeRender(ScreenRenderer r) => _renderSystems.ForEach((s) => s.Render(r));
 
         public IEnumerator<ComponentSystem> GetEnumerator() => _dict.Values.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => _dict.GetEnumerator();

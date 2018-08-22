@@ -21,7 +21,7 @@ namespace Game_Test.Test_Data
         {
             foreach(TestComponent component in WatchedComponents)
             {
-                if(component.Owner.Components["physical"] is Physical phys)
+                if(component.Owner.Components["spatial"] is Spatial phys)
                 {
                     phys.X += 5 * (component.Owner.Id % 20) * Owner.DeltaTime;
                 }

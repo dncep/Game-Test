@@ -12,7 +12,7 @@ namespace Game_Test
 {
     class GameScreen : Form
     {
-        private Game _game;
+        /*private Game _game;
 
         public GameScreen(Game game)
         {
@@ -41,6 +41,6 @@ namespace Game_Test
         }
 
         internal void CrossThreadRefresh() => Invoke((MethodInvoker)delegate { Refresh(); });
-        internal void CrossThreadClose() => Invoke((MethodInvoker)delegate { Close(); });
+        internal void CrossThreadClose() => Invoke((MethodInvoker)delegate { Close(); });*/
     }
 }

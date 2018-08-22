@@ -3,22 +3,14 @@ using System.Drawing;
 
 using Game_Test.Scenes;
 using Game_Test.Visuals;
+using SdlDotNet.Graphics;
 
 namespace Game_Test.Components
 {
-    class Renderable : IComponent
+    class Renderable : Component
     {
-        private float _scale = 1;
         public string Texture { get; set; }
-
-        public float Scale
-        {
-            get => _scale;
-            set
-            {
-                if (value != 0) _scale = value;
-            }
-        }
+        public Rectangle Bounds { get; set; }
 
         public Renderable() => ComponentName = "renderable";
 
@@ -27,22 +19,28 @@ namespace Game_Test.Components
             this.Texture = texture;
         }
 
-        public Renderable(string texture, int scale) : this()
+        public Renderable(string texture, Rectangle bounds) : this()
         {
             this.Texture = texture;
-            this.Scale = scale;
+            this.Bounds = bounds;
         }
 
-        public void Render(Graphics g, Viewport view, SpriteSet sprites)
+        public void Render(ScreenRenderer r, Viewport view, SpriteSet sprites)
         {
+            Spatial physical = Owner.Components["spatial"] as Spatial;
+            float x = ((float) physical.X - 8);
+            float y = ((float) -physical.Y - 8);
+            int size = 16;
 
-            Physical physical = Owner.Components["physical"] as Physical;
-            float x = (physical.X - 8);
-            float y = (physical.Y - 8);
-            float size = 16;
+            x -= view.X;
+            y += view.Y;
 
-            Rectangle drawingRect = new Rectangle((int)Math.Round(x), (int)Math.Round(y), (int)Math.Ceiling(size), (int)Math.Ceiling(size));
-            sprites[Texture].DrawOnto(g, drawingRect);
+            x += r.ScreenResolution.Width / 2;
+            y += r.ScreenResolution.Height / 2;
+
+            Rectangle drawingRect = new Rectangle((int)Math.Floor(x), (int)Math.Floor(y), size, size);
+
+            sprites[Texture].DrawOnto(r.View, drawingRect);
         }
     }
 }

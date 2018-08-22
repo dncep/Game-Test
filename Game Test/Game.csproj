@@ -60,17 +60,21 @@
     <Compile Include="ComponentSystems\ComponentSystem.cs" />
     <Compile Include="ComponentSystems\FramerateCounter.cs" />
     <Compile Include="ComponentSystems\LevelRenderer.cs" />
-    <Compile Include="ComponentSystems\Renderer.cs" />
+    <Compile Include="ComponentSystems\PhysicsSystem.cs" />
     <Compile Include="ComponentSystems\SystemMap.cs" />
     <Compile Include="Components\ComponentMap.cs" />
-    <Compile Include="Components\IComponent.cs" />
+    <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Damaging.cs" />
+    <Compile Include="Components\EventArgs.cs" />
     <Compile Include="Components\Health.cs" />
     <Compile Include="Components\LevelTile.cs" />
-    <Compile Include="Components\Physical.cs" />
+    <Compile Include="Components\Spatial.cs" />
     <Compile Include="Components\Renderable.cs" />
+    <Compile Include="Components\RigidBody.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\TileEntity.cs" />
+    <Compile Include="GameEvents\CollisionEvent.cs" />
+    <Compile Include="GameEvents\EventManager.cs" />
     <Compile Include="GameScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,19 +90,25 @@
     <Compile Include="Scenes\Viewport.cs" />
     <Compile Include="Scenes\EntityMap.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Test Data\Box.cs" />
+    <Compile Include="Test Data\Slope.cs" />
     <Compile Include="Test Data\TestComponent.cs" />
     <Compile Include="Test Data\TestEntity.cs" />
     <Compile Include="Test Data\TestScene.cs" />
     <Compile Include="Test Data\TestSystem.cs" />
     <Compile Include="Transition\NewGameScreen.cs" />
+    <Compile Include="Util\FreeVector2D.cs" />
+    <Compile Include="Util\GeneralUtil.cs" />
+    <Compile Include="Util\IPolygon.cs" />
+    <Compile Include="Util\Rectangle.cs" />
+    <Compile Include="Util\Vector2D.cs" />
+    <Compile Include="Visuals\Font\PixelFont.cs" />
+    <Compile Include="Visuals\ScreenRenderer.cs" />
     <Compile Include="Visuals\Sprite.cs" />
     <Compile Include="Visuals\SpriteSet.cs" />
     <Compile Include="Visuals\SpriteSheet.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -125,10 +135,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\consola.ttf" />
     <None Include="Resources\notes.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sprites0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SdlDotNet\src\SdlDotNet.csproj">
+      <Project>{7B28E1B7-FADB-4D0A-BA54-77E2BE941418}</Project>
+      <Name>SdlDotNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Baseclass.Contrib.Nuget.Output.1.0.0\build\net40\Baseclass.Contrib.Nuget.Output.targets" Condition="Exists('..\packages\Baseclass.Contrib.Nuget.Output.1.0.0\build\net40\Baseclass.Contrib.Nuget.Output.targets')" />

@@ -7,7 +7,7 @@ using Game_Test.Components;
 
 namespace Game_Test.Test_Data
 {
-    class TestComponent : IComponent
+    class TestComponent : Component
     {
         public TestComponent() => ComponentName = "test";
     }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 
 using Game_Test.Components;
 using Game_Test.Scenes;
+using Game_Test.Visuals;
 
 namespace Game_Test.ComponentSystems
 {
@@ -33,14 +33,14 @@ namespace Game_Test.ComponentSystems
             set => _processing_loop = (byte)(value ? (_processing_loop | _render) : (_processing_loop & ~_render));
         }
 
-        protected List<IComponent> WatchedComponents = new List<IComponent>();
+        protected List<Component> WatchedComponents = new List<Component>();
 
-        public void RemoveWatchedComponent(IComponent component)
+        public virtual void RemoveWatchedComponent(Component component)
         {
             WatchedComponents.Remove(component);
         }
 
-        public void AddWatchedComponent(IComponent component)
+        public virtual void AddWatchedComponent(Component component)
         {
             WatchedComponents.Add(component);
         }
@@ -49,7 +49,7 @@ namespace Game_Test.ComponentSystems
         {
         }
 
-        public virtual void Render(Graphics g)
+        public virtual void Render(ScreenRenderer g)
         {
         }
     }

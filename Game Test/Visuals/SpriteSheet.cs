@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using SdlDotNet.Graphics;
 
 namespace Game_Test.Visuals
 {
     class SpriteSheet
     {
-        private readonly Image _image;
+        private readonly Surface _image;
         private readonly Dictionary<string, Sprite> _sprites = new Dictionary<string, Sprite>();
 
         public Sprite this[string name]
@@ -19,7 +20,7 @@ namespace Game_Test.Visuals
 
         public SpriteSheet(Image image)
         {
-            _image = image;
+            _image = new Surface(new Bitmap(image));
         }
 
         public void AddRegion(string name, Rectangle rectangle)

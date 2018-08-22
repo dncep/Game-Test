@@ -2,7 +2,7 @@
 
 namespace Game_Test.Components
 {
-    class Health : IComponent
+    class Health : Component
     {
         public Health() => ComponentName = "health";
 

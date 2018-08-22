@@ -9,12 +9,10 @@ namespace Game_Test
 {
     class Game
     {
-        public readonly Size ScreenSize = new Size(1280, 720);
+        /*public readonly Size ScreenSize = new Size(1280, 720);
 
         public Scene CurrentScene;
         private GameScreen _screen;
-
-        private Stopwatch _sw;
 
         private bool _running = true;
 
@@ -57,19 +55,10 @@ namespace Game_Test
         {
             while (!Started) { }
 
-            //double limit = 1000 / TargetFps;
-
-            _sw = new Stopwatch();
-
-            _sw.Start();
-
             while (true)
             {
 
-                float deltaTime = (float) (_sw.Elapsed.TotalMilliseconds / 1000d);
-                _sw.Restart();
-
-                CurrentScene.Tick(deltaTime);
+                CurrentScene.InvokeTick();
                 _screen.CrossThreadRefresh();
 
                 if (!_running)

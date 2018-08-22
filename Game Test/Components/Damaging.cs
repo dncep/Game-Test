@@ -1,6 +1,6 @@
 ﻿namespace Game_Test.Components
 {
-    class Damaging : IComponent
+    class Damaging : Component
     {
         public Damaging() => ComponentName = "damaging";
     }
